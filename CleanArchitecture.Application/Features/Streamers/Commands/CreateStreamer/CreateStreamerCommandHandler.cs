@@ -2,7 +2,6 @@
 using CleanArchitecture.Application.Contracts.Persistence;
 using CleanArchitecture.Domain;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Application.Features.Streamers.Commands
 {
@@ -10,21 +9,17 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands
     {
         private readonly IAsyncRepository<Streamer> _streamerRepository;
         private readonly IMapper _mapper;
-        private readonly ILogger<CreateStreamerCommandHandler> _logger;
 
-        public CreateStreamerCommandHandler(IAsyncRepository<Streamer> streamerRepository, IMapper mapper, ILogger<CreateStreamerCommandHandler> logger)
+        public CreateStreamerCommandHandler(IAsyncRepository<Streamer> streamerRepository, IMapper mapper)
         {
             _streamerRepository = streamerRepository;
             _mapper = mapper;
-            _logger = logger;
         }
 
         public async Task<int> Handle(CreateStreamerCommand request, CancellationToken cancellationToken)
         {
             var streamerEntity = _mapper.Map<Streamer>(request);
             var newStreamer = await _streamerRepository.AddAsync(streamerEntity);
-
-            _logger.LogInformation($"Streamer {newStreamer.Id} fue creado existosamente");
 
             return newStreamer.Id;
         }
