@@ -18,7 +18,6 @@ namespace CleanArchitecture.Infrastructure
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IVideoRepository, VideoRepository>();
-            services.AddScoped<IStreamerRepository, StreamerRepository>();
 
             return services;
         }
