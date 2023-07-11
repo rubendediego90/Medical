@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Application.Features.Streamers.Commands.DeleteStreamer
 {
-    public class DeleteStreamerCommand : IRequest
+    public class DeleteStreamerCommandRequest : IRequest
     {
         public int Id { get; set; }
     }

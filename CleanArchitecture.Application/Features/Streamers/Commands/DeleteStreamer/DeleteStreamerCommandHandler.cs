@@ -6,7 +6,7 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Features.Streamers.Commands.DeleteStreamer
 {
-    public class DeleteStreamerCommandHandler : IRequestHandler<DeleteStreamerCommand>
+    public class DeleteStreamerCommandHandler : IRequestHandler<DeleteStreamerCommandRequest>
     {
         private readonly IBaseRepository<Streamer> _streamerRepository;
         private readonly IMapper _mapper;
@@ -17,7 +17,7 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.DeleteStream
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(DeleteStreamerCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteStreamerCommandRequest request, CancellationToken cancellationToken)
         {
             var streamerToDelete = await _streamerRepository.GetByIdAsync(request.Id);
             if (streamerToDelete == null)

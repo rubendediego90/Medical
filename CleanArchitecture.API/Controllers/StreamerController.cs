@@ -24,7 +24,7 @@ namespace CleanArchitecture.API.Controllers
         [HttpPost(Name = "CreateStreamer")]
         // [Authorize(Roles = "Administrador")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommand command)
+        public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommandRequest command)
         {
           return  await  _mediator.Send(command);
         }
@@ -33,7 +33,7 @@ namespace CleanArchitecture.API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> UpdateStreamer([FromBody] UpdateStreamerCommand command)
+        public async Task<ActionResult> UpdateStreamer([FromBody] UpdateStreamerCommandRequest command)
         {
             await _mediator.Send(command);
 
@@ -47,7 +47,7 @@ namespace CleanArchitecture.API.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> DeleteStreamer(int id)
         {
-            var command = new DeleteStreamerCommand
+            var command = new DeleteStreamerCommandRequest
             {
                 Id = id
             };

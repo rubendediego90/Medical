@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Application.Features.Streamers.Commands
 {
-    public class CreateStreamerCommand : IRequest<int>
+    public class CreateStreamerCommandRequest : IRequest<int>
     {
         public string Nombre { get; set; } = string.Empty;
 

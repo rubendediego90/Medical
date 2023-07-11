@@ -6,7 +6,7 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer
 {
-    public class UpdateStreamerCommandHandler : IRequestHandler<UpdateStreamerCommand>
+    public class UpdateStreamerCommandHandler : IRequestHandler<UpdateStreamerCommandRequest>
     {
         private readonly IBaseRepository<Streamer> _streamerRepository;
         private readonly IMapper _mapper;
@@ -17,7 +17,7 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStream
             _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(UpdateStreamerCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateStreamerCommandRequest request, CancellationToken cancellationToken)
         {
            var streamerToUpdate =  await  _streamerRepository.GetByIdAsync(request.Id);
 
@@ -26,7 +26,7 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStream
                 throw new NotFoundException(nameof(Streamer), request.Id);
             }
 
-            _mapper.Map(request, streamerToUpdate, typeof(UpdateStreamerCommand), typeof(Streamer));
+            _mapper.Map(request, streamerToUpdate, typeof(UpdateStreamerCommandRequest), typeof(Streamer));
 
             await _streamerRepository.UpdateAsync(streamerToUpdate);
 

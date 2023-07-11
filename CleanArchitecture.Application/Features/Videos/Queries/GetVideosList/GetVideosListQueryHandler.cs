@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Features.Videos.Queries.GetVideosList
 {
-    public class GetVideosListQueryHandler : IRequestHandler<GetVideosListQuery, List<VideosVm>>
+    public class GetVideosListQueryHandler : IRequestHandler<GetVideosListQueryRequest, List<GetVideosListQueryResponse>>
     {
         private readonly IVideoRepository _videoRepository;
         private readonly IMapper _mapper;
@@ -15,11 +15,11 @@ namespace CleanArchitecture.Application.Features.Videos.Queries.GetVideosList
             _mapper = mapper;
         }
 
-        public async Task<List<VideosVm>> Handle(GetVideosListQuery request, CancellationToken cancellationToken)
+        public async Task<List<GetVideosListQueryResponse>> Handle(GetVideosListQueryRequest request, CancellationToken cancellationToken)
         {
             var videoList = await _videoRepository.GetVideoByUsername(request._Username);
 
-            return _mapper.Map<List<VideosVm>>(videoList);
+            return _mapper.Map<List<GetVideosListQueryResponse>>(videoList);
         }
     }
 }
