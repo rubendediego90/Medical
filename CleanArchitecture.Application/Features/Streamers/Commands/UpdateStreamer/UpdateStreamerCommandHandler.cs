@@ -8,10 +8,10 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStream
 {
     public class UpdateStreamerCommandHandler : IRequestHandler<UpdateStreamerCommand>
     {
-        private readonly IAsyncRepository<Streamer> _streamerRepository;
+        private readonly IBaseRepository<Streamer> _streamerRepository;
         private readonly IMapper _mapper;
 
-        public UpdateStreamerCommandHandler(IAsyncRepository<Streamer> streamerRepository, IMapper mapper)
+        public UpdateStreamerCommandHandler(IBaseRepository<Streamer> streamerRepository, IMapper mapper)
         {
             _streamerRepository = streamerRepository;
             _mapper = mapper;

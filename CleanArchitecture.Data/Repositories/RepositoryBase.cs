@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace CleanArchitecture.Infrastructure.Repositories
 {
-    public class RepositoryBase<T> : IAsyncRepository<T> where T : BaseDomainModel
+    public class RepositoryBase<T> : IBaseRepository<T> where T : BaseDomainModel
     {
         protected readonly StreamerDbContext _context;
 

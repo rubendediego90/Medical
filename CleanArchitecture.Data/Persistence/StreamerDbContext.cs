@@ -10,15 +10,6 @@ namespace CleanArchitecture.Infrastructure.Persistence
         {
         }
 
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(@"Data Source=localhost; 
-        //        Initial Catalog=Streamer;user id=sa;password=VaxiDrez2025$")
-        //    .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, Microsoft.Extensions.Logging.LogLevel.Information)
-        //    .EnableSensitiveDataLogging();
-        //}
-
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in ChangeTracker.Entries<BaseDomainModel>())
@@ -40,7 +31,6 @@ namespace CleanArchitecture.Infrastructure.Persistence
             return base.SaveChangesAsync(cancellationToken);
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Streamer>()
@@ -50,8 +40,6 @@ namespace CleanArchitecture.Infrastructure.Persistence
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-
             modelBuilder.Entity<Video>()
                 .HasMany(p => p.Actores)
                 .WithMany(t => t.Videos)
@@ -59,9 +47,7 @@ namespace CleanArchitecture.Infrastructure.Persistence
                     pt => pt.HasKey(e => new { e.ActorId, e.VideoId })
                 );
 
-        
         }
-
 
         public DbSet<Streamer>? Streamers { get; set; }
 

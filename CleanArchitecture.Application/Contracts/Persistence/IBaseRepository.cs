@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace CleanArchitecture.Application.Contracts.Persistence
 {
-    public interface IAsyncRepository<T> where T : BaseDomainModel
+    public interface IBaseRepository<T> where T : BaseDomainModel
     {
         Task<IReadOnlyList<T>> GetAllAsync();
 

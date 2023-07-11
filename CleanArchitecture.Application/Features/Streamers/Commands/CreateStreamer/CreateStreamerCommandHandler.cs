@@ -7,10 +7,10 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands
 {
     public class CreateStreamerCommandHandler : IRequestHandler<CreateStreamerCommand, int>
     {
-        private readonly IAsyncRepository<Streamer> _streamerRepository;
+        private readonly IBaseRepository<Streamer> _streamerRepository;
         private readonly IMapper _mapper;
 
-        public CreateStreamerCommandHandler(IAsyncRepository<Streamer> streamerRepository, IMapper mapper)
+        public CreateStreamerCommandHandler(IBaseRepository<Streamer> streamerRepository, IMapper mapper)
         {
             _streamerRepository = streamerRepository;
             _mapper = mapper;
