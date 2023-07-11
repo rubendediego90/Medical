@@ -18,11 +18,13 @@ namespace CleanArchitecture.API.Controllers
         }
 
         [HttpGet("{username}", Name = "GetVideo")]
-       // [Authorize]
         [ProducesResponseType(typeof(IEnumerable<GetVideosListQueryResponse>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<GetVideosListQueryResponse>>> GetVideosByUsername(string username)
         {
-            var query = new GetVideosListQueryRequest(username);
+            var query = new GetVideosListQueryRequest
+            {
+                username = username
+            };
             var videos = await _mediator.Send(query);
             return Ok(videos);
         }

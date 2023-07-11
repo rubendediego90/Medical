@@ -17,7 +17,7 @@ namespace CleanArchitecture.Application.Features.Videos.Queries.GetVideosList
 
         public async Task<List<GetVideosListQueryResponse>> Handle(GetVideosListQueryRequest request, CancellationToken cancellationToken)
         {
-            var videoList = await _videoRepository.GetVideoByUsername(request._Username);
+            var videoList = await _videoRepository.GetVideoByUsername(request.username);
 
             return _mapper.Map<List<GetVideosListQueryResponse>>(videoList);
         }
