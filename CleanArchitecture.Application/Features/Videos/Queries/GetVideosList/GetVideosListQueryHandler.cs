@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CleanArchitecture.Application.Contracts.Persistence;
 using CleanArchitecture.Domain;
+using CleanArchitecture.Infrastructure.IRepositories;
 using MediatR;
 
 namespace CleanArchitecture.Application.Features.Videos.Queries.GetVideosList

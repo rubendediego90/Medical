@@ -1,109 +1,91 @@
-﻿using CleanArchitecture.Application.Contracts.Persistence;
-using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Infrastructure.Persistence;
+﻿using System.Linq.Expressions;
+using CleanArchitecture.Domain.IRepositories;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace CleanArchitecture.Infrastructure.Repositories
 {
-    public class RepositoryBase<T> : IBaseRepository<T> where T : BaseDomainModel
+    public class RepositoryBase<TEntity, TContext> : IBaseRepository<TEntity, TContext> where TEntity : class where TContext : DbContext
     {
-        protected readonly StreamerDbContext _context;
+        protected readonly TContext _context;
 
-        public RepositoryBase(StreamerDbContext context)
+        public RepositoryBase(TContext context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _context = context;
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<TEntity?> Add(TEntity entity)
         {
-            return await _context.Set<T>().ToListAsync();
-        }
-
-        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
-        { 
-                return await _context.Set<T>().Where(predicate).ToListAsync();
-        }
-
-        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
-                                       Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-                                       string includeString = null,
-                                       bool disableTracking = true)
-        {
-            IQueryable<T> query = _context.Set<T>();
-            if(disableTracking) query = query.AsNoTracking();
-
-            if (!string.IsNullOrWhiteSpace(includeString)) query = query.Include(includeString);
-
-            if (predicate!=null) query = query.Where(predicate);
-
-            if(orderBy!=null)
-                return await orderBy(query).ToListAsync();
-        
-
-            return await query.ToListAsync();
-        }
-
-        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
-                                     Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-                                     List<Expression<Func<T, object>>> includes = null,
-                                     bool disableTracking = true)
-        { 
-        
-            IQueryable<T> query = _context.Set<T>();
-            if (disableTracking) query = query.AsNoTracking();
-
-            if (includes != null) query = includes.Aggregate(query, (current, include) => current.Include(include));
-
-            if (predicate != null) query = query.Where(predicate);
-
-            if (orderBy != null)
-                return await orderBy(query).ToListAsync();
-
-
-            return await query.ToListAsync();
-        }
-
-        public virtual async Task<T> GetByIdAsync(int id)
-        {
-            return await _context.Set<T>().FindAsync(id);
-        }
-
-        public async Task<T> AddAsync(T entity)
-        { 
-            _context.Set<T>().Add(entity);
-            await _context.SaveChangesAsync();
-            return entity;  
-        }
-
-        public async Task<T> UpdateAsync(T entity)
-        {
-            _context.Set<T>().Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
+            await _context.Set<TEntity>().AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task<List<TEntity>?> AddList(List<TEntity> listItems)
         {
-            _context.Set<T>().Remove(entity);
+            await _context.Set<TEntity>().AddRangeAsync(listItems);
+            await _context.SaveChangesAsync();
+            return listItems;
+        }
+
+        public async Task Update(TEntity entity)
+        {
+            _context.Set<TEntity>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public void AddEntity(T entity)
+        public async Task UpdateRange(List<TEntity> listItems)
         {
-            _context.Set<T>().Add(entity);
+            _context.Set<TEntity>().UpdateRange(listItems);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateEntity(T entity)
+        public async Task Remove(TEntity entity)
         {
-            _context.Set<T>().Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
+            _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public void DeleteEntity(T entity)
+        public IQueryable<TEntity> Get()
         {
-            _context.Set<T>().Remove(entity);
+            return _context.Set<TEntity>();
         }
+
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> expression)
+        {
+            return _context.Set<TEntity>().Where(expression);
+        }
+
+        public IQueryable<TEntity> GetAsNoTracking(Expression<Func<TEntity, bool>> expression)
+        {
+            return Get(expression).AsNoTracking();
+        }
+
+        public IQueryable<TEntity> GetAsNoTracking()
+        {
+            return _context.Set<TEntity>().AsNoTracking();
+        }
+
+        public async Task<TEntity?> GetById(int id)
+        {
+            return await _context.Set<TEntity>().FindAsync(id);
+        }
+
+        /*public async Task<PagedResult<T>> GetPaginatedGenericList(DtoListFiltersBase dtoListFiltersBase, IQueryable<T> func)
+        {
+            int num = await func.CountAsync();
+            if (!dtoListFiltersBase.CurrentPage.HasValue)
+            {
+                dtoListFiltersBase.CurrentPage = 1;
+            }
+
+            if (!dtoListFiltersBase.PageSize.HasValue)
+            {
+                dtoListFiltersBase.PageSize = ((num <= 0) ? 1 : num);
+            }
+
+            return func.PageResult(dtoListFiltersBase.CurrentPage.Value, dtoListFiltersBase.PageSize.Value, num);
+        }*/
+
     }
 }

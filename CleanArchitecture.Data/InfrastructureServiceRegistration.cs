@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Application.Contracts.Persistence;
+﻿using CleanArchitecture.Domain.IRepositories;
+using CleanArchitecture.Infrastructure.IRepositories;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace CleanArchitecture.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
             );
 
-            services.AddScoped(typeof(IBaseRepository<>), typeof(RepositoryBase<>));
+            services.AddScoped(typeof(IBaseRepository<,>), typeof(RepositoryBase<,>));
             services.AddScoped<IVideoRepository, VideoRepository>();
 
             return services;
