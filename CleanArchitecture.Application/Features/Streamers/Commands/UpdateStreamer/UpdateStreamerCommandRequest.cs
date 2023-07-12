@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System.Text.Json.Serialization;
 
 namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer
 {

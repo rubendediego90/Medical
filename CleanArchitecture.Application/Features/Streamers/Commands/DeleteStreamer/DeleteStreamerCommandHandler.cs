@@ -19,14 +19,13 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.DeleteStream
 
         public async Task<Unit> Handle(DeleteStreamerCommandRequest request, CancellationToken cancellationToken)
         {
-            var streamerToDelete = await _streamerRepository.GetByIdAsync(request.Id);
+            Streamer streamerToDelete = await _streamerRepository.GetByIdAsync(request.Id);
             if (streamerToDelete == null)
             {
                 throw new NotFoundException(nameof(Streamer), request.Id);      
             }
 
             await _streamerRepository.DeleteAsync(streamerToDelete);
-
             return Unit.Value;
         }
     }

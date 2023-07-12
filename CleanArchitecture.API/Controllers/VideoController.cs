@@ -1,14 +1,10 @@
 ﻿using CleanArchitecture.Application.Features.Videos.Queries.GetVideosList;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace CleanArchitecture.API.Controllers
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
-    public class VideoController : ControllerBase
+    public class VideoController : GenericController
     {
         private readonly IMediator _mediator;
 
@@ -17,15 +13,15 @@ namespace CleanArchitecture.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{username}", Name = "GetVideo")]
-        [ProducesResponseType(typeof(IEnumerable<GetVideosListQueryResponse>), (int)HttpStatusCode.OK)]
+        [HttpGet("{username}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<GetVideosListQueryResponse>>> GetVideosByUsername(string username)
         {
-            var query = new GetVideosListQueryRequest
+            GetVideosListQueryRequest query = new()
             {
                 username = username
             };
-            var videos = await _mediator.Send(query);
+            IEnumerable<GetVideosListQueryResponse> videos = await _mediator.Send(query);
             return Ok(videos);
         }
     }

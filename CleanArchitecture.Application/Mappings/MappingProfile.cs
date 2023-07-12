@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Features.Streamers.Commands;
+using CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer;
 using CleanArchitecture.Application.Features.Videos.Queries.GetVideosList;
 using CleanArchitecture.Domain;
 
@@ -11,6 +12,8 @@ namespace CleanArchitecture.Application.Mappings
         {
             CreateMap<Video, GetVideosListQueryResponse>();
             CreateMap<CreateStreamerCommandRequest, Streamer>();
+            CreateMap<UpdateStreamerCommandRequest, Streamer>();
+
         }
     }
 }

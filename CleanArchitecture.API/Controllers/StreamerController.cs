@@ -10,7 +10,7 @@ namespace CleanArchitecture.API.Controllers
 {
     
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v2/[controller]")]
     public class StreamerController : ControllerBase
     {
 
@@ -24,18 +24,18 @@ namespace CleanArchitecture.API.Controllers
         [HttpPost(Name = "CreateStreamer")]
         // [Authorize(Roles = "Administrador")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommandRequest command)
+        public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommandRequest request)
         {
-          return  await  _mediator.Send(command);
+          return  await  _mediator.Send(request);
         }
 
         [HttpPut(Name = "UpdateStreamer")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> UpdateStreamer([FromBody] UpdateStreamerCommandRequest command)
+        public async Task<ActionResult> UpdateStreamer([FromBody] UpdateStreamerCommandRequest request)
         {
-            await _mediator.Send(command);
+            await _mediator.Send(request);
 
             return NoContent();
         }
@@ -47,14 +47,14 @@ namespace CleanArchitecture.API.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> DeleteStreamer(int id)
         {
-            var command = new DeleteStreamerCommandRequest
+            DeleteStreamerCommandRequest command = new()
             {
                 Id = id
             };
 
             await _mediator.Send(command);
 
-            return NoContent();    
+            return NoContent();
         }
 
     }

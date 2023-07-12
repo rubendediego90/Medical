@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Contracts.Persistence;
+using CleanArchitecture.Domain;
 using MediatR;
 
 namespace CleanArchitecture.Application.Features.Videos.Queries.GetVideosList
@@ -17,7 +18,7 @@ namespace CleanArchitecture.Application.Features.Videos.Queries.GetVideosList
 
         public async Task<List<GetVideosListQueryResponse>> Handle(GetVideosListQueryRequest request, CancellationToken cancellationToken)
         {
-            var videoList = await _videoRepository.GetVideoByUsername(request.username);
+            IEnumerable<Video> videoList = await _videoRepository.GetVideoByUsername(request.username);
 
             return _mapper.Map<List<GetVideosListQueryResponse>>(videoList);
         }

@@ -18,8 +18,8 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands
 
         public async Task<int> Handle(CreateStreamerCommandRequest request, CancellationToken cancellationToken)
         {
-            var streamerEntity = _mapper.Map<Streamer>(request);
-            var newStreamer = await _streamerRepository.AddAsync(streamerEntity);
+            Streamer streamerEntity = _mapper.Map<Streamer>(request);
+            Streamer newStreamer = await _streamerRepository.AddAsync(streamerEntity);
 
             return newStreamer.Id;
         }

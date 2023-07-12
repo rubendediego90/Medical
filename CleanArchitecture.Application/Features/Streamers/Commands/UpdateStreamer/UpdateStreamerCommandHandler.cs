@@ -19,14 +19,14 @@ namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStream
 
         public async Task<Unit> Handle(UpdateStreamerCommandRequest request, CancellationToken cancellationToken)
         {
-           var streamerToUpdate =  await  _streamerRepository.GetByIdAsync(request.Id);
+            Streamer streamerToUpdate =  await  _streamerRepository.GetByIdAsync(request.Id);
 
             if (streamerToUpdate == null)
             {
                 throw new NotFoundException(nameof(Streamer), request.Id);
             }
 
-            _mapper.Map(request, streamerToUpdate, typeof(UpdateStreamerCommandRequest), typeof(Streamer));
+            _mapper.Map(request, streamerToUpdate);
 
             await _streamerRepository.UpdateAsync(streamerToUpdate);
 
