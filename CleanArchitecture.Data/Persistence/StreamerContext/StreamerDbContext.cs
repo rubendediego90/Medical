@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Domain;
 using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Infrastructure.Persistence.StreamerContext.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Infrastructure.Persistence
@@ -31,24 +32,6 @@ namespace CleanArchitecture.Infrastructure.Persistence
             return base.SaveChangesAsync(cancellationToken);
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Streamer>()
-                .HasMany(m => m.Videos)
-                .WithOne(m => m.Streamer)
-                .HasForeignKey(m => m.StreamerId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Video>()
-                .HasMany(p => p.Actores)
-                .WithMany(t => t.Videos)
-                .UsingEntity<VideoActor>(
-                    pt => pt.HasKey(e => new { e.ActorId, e.VideoId })
-                );
-
-        }
-
         public DbSet<Streamer>? Streamers { get; set; }
 
         public DbSet<Video>? Videos { get; set; }
@@ -57,5 +40,10 @@ namespace CleanArchitecture.Infrastructure.Persistence
 
         public DbSet<Director>? Directores { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new StreamerConfiguration())
+                        .ApplyConfiguration(new VideoConfiguration());
+        }
     }
 }
