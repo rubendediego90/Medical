@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using System.Text.Json.Serialization;
 
-namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer
+namespace CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEmployeeType
 {
-    public  class UpdateStreamerCommandRequest : IRequest 
+    public  class UpdateEmployeeTypeCommandRequest : IRequest 
     {
         public int Id { get; set; }
 

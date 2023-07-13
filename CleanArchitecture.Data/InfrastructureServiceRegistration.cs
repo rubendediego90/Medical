@@ -13,7 +13,7 @@ namespace CleanArchitecture.Infrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddDbContext<StreamerDbContext>(options =>
+            services.AddDbContext<EmployeeDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
             );
 

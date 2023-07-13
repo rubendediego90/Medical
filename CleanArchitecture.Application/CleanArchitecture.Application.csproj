@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\Streamers\Queries\**" />
+    <Compile Remove="Features\EmployeeTypes\Queries\**" />
     <Compile Remove="Features\Videos\Commands\**" />
-    <EmbeddedResource Remove="Features\Streamers\Queries\**" />
+    <EmbeddedResource Remove="Features\EmployeeTypes\Queries\**" />
     <EmbeddedResource Remove="Features\Videos\Commands\**" />
-    <None Remove="Features\Streamers\Queries\**" />
+    <None Remove="Features\EmployeeTypes\Queries\**" />
     <None Remove="Features\Videos\Commands\**" />
   </ItemGroup>
 

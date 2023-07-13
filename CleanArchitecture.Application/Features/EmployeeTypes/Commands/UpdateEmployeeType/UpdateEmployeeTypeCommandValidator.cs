@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer
+namespace CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEmployeeType
 {
-    public class UpdateStreamerCommandValidator : AbstractValidator<UpdateStreamerCommandRequest>
+    public class UpdateEmployeeTypeCommandValidator : AbstractValidator<UpdateEmployeeTypeCommandRequest>
     {
-        public UpdateStreamerCommandValidator()
+        public UpdateEmployeeTypeCommandValidator()
         {
             RuleFor(p => p.Nombre)
                 .NotNull().WithMessage("{Nombre} no permite valores nulos");

@@ -1,38 +1,34 @@
-﻿using CleanArchitecture.Application.Features.Streamers.Commands;
-using CleanArchitecture.Application.Features.Streamers.Commands.DeleteStreamer;
-using CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer;
+﻿using CleanArchitecture.Application.Features.EmployeeTypes.Commands.CreateEmployeeType;
+using CleanArchitecture.Application.Features.EmployeeTypes.Commands.DeleteEmployeeType;
+using CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEmployeeType;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace CleanArchitecture.API.Controllers
 {
-    
-    [ApiController]
-    [Route("api/v2/[controller]")]
-    public class StreamerController : ControllerBase
+    public class EmployeeTypeController : GenericController
     {
 
         private IMediator _mediator;
 
-        public StreamerController(IMediator mediator)
+        public EmployeeTypeController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpPost(Name = "CreateStreamer")]
-        // [Authorize(Roles = "Administrador")]
+        [HttpPost(Name = "CreateEmployeeType")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<int>> CreateStreamer([FromBody] CreateStreamerCommandRequest request)
+        public async Task<ActionResult<int>> CreateEmployeeType([FromBody] CreateEmployeeTypeCommandRequest request)
         {
           return  await  _mediator.Send(request);
         }
 
-        [HttpPut(Name = "UpdateStreamer")]
+        [HttpPut(Name = "UpdateEmployeeTyper")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> UpdateStreamer([FromBody] UpdateStreamerCommandRequest request)
+        public async Task<ActionResult> UpdateEmployeeType([FromBody] UpdateEmployeeTypeCommandRequest request)
         {
             await _mediator.Send(request);
 
@@ -40,13 +36,13 @@ namespace CleanArchitecture.API.Controllers
         }
 
 
-        [HttpDelete("{id}", Name = "DeleteStreamer")]
+        [HttpDelete("{id}", Name = "DeleteEmployeeType")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> DeleteStreamer(int id)
+        public async Task<ActionResult> DeleteEmployeeType(int id)
         {
-            DeleteStreamerCommandRequest command = new()
+            DeleteEmployeeTypeCommandRequest command = new()
             {
                 Id = id
             };
