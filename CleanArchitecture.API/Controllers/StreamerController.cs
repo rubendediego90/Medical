@@ -2,7 +2,6 @@
 using CleanArchitecture.Application.Features.Streamers.Commands.DeleteStreamer;
 using CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
