@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Domain.IRepositories;
-using CleanArchitecture.Infrastructure.IRepositories;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +17,7 @@ namespace CleanArchitecture.Infrastructure
             );
 
             services.AddScoped(typeof(IBaseRepository<,>), typeof(RepositoryBase<,>));
-            services.AddScoped<IVideoRepository, VideoRepository>();
+            // services.AddScoped<IVideoRepository, VideoRepository>();
 
             return services;
         }

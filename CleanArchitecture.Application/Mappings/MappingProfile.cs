@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CleanArchitecture.Application.Features.Streamers.Commands;
-using CleanArchitecture.Application.Features.Streamers.Commands.UpdateStreamer;
+using CleanArchitecture.Application.Features.EmployeeTypes.Commands.CreateEmployeeType;
+using CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEmployeeType;
 using CleanArchitecture.Application.Features.Videos.Queries.GetVideosList;
-using CleanArchitecture.Domain;
+using CleanArchitecture.Domain.Model;
 
 namespace CleanArchitecture.Application.Mappings
 {
@@ -10,9 +10,9 @@ namespace CleanArchitecture.Application.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<Video, GetVideosListQueryResponse>();
-            CreateMap<CreateEmployeeTypeCommandRequest, Streamer>();
-            CreateMap<UpdateEmployeeTypeCommandRequest, Streamer>();
+            CreateMap<EmployeeType, GetEmployeeTypeListQueryResponse>();
+            CreateMap<CreateEmployeeTypeCommandRequest, EmployeeType>();
+            CreateMap<UpdateEmployeeTypeCommandRequest, EmployeeType>();
 
         }
     }

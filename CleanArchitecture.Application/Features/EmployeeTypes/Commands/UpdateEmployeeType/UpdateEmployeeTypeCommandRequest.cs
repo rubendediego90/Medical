@@ -7,8 +7,7 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEm
     {
         public int Id { get; set; }
 
-        public string Nombre { get; set; } = string.Empty;
+        public string DEmployeeType { get; set; }
 
-        public string Url { get; set; } = string.Empty;
     }
 }

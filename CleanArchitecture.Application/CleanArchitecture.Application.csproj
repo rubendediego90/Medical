@@ -7,15 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\EmployeeTypes\Queries\**" />
-    <Compile Remove="Features\Videos\Commands\**" />
-    <EmbeddedResource Remove="Features\EmployeeTypes\Queries\**" />
-    <EmbeddedResource Remove="Features\Videos\Commands\**" />
-    <None Remove="Features\EmployeeTypes\Queries\**" />
-    <None Remove="Features\Videos\Commands\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CleanArchitecture.Data\CleanArchitecture.Infrastructure.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Domain\CleanArchitecture.Domain.csproj" />
   </ItemGroup>

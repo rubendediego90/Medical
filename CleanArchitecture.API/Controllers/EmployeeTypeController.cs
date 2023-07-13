@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Application.Features.EmployeeTypes.Commands.CreateEmployeeType;
 using CleanArchitecture.Application.Features.EmployeeTypes.Commands.DeleteEmployeeType;
 using CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEmployeeType;
+using CleanArchitecture.Application.Features.Videos.Queries.GetVideosList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -15,6 +16,18 @@ namespace CleanArchitecture.API.Controllers
         public EmployeeTypeController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{username}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<GetEmployeeTypeListQueryResponse>>> GetVideosByUsername(string username)
+        {
+            GetEmployeeTypeListQueryRequest query = new()
+            {
+                username = username
+            };
+            IEnumerable<GetEmployeeTypeListQueryResponse> videos = await _mediator.Send(query);
+            return Ok(videos);
         }
 
         [HttpPost(Name = "CreateEmployeeType")]

@@ -6,11 +6,9 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEm
     {
         public UpdateEmployeeTypeCommandValidator()
         {
-            RuleFor(p => p.Nombre)
-                .NotNull().WithMessage("{Nombre} no permite valores nulos");
+            RuleFor(p => p.DEmployeeType)
+                .NotNull().WithMessage("{DEmployeeType} no permite valores nulos");
 
-            RuleFor(p => p.Url)
-                .NotNull().WithMessage("{Ur;} no permite valores nulos");
         }
     }
 }

@@ -15,13 +15,13 @@ namespace CleanArchitecture.API.Controllers
 
         [HttpGet("{username}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<GetVideosListQueryResponse>>> GetVideosByUsername(string username)
+        public async Task<ActionResult<IEnumerable<GetEmployeeTypeListQueryResponse>>> GetVideosByUsername(string username)
         {
-            GetVideosListQueryRequest query = new()
+            GetEmployeeTypeListQueryRequest query = new()
             {
                 username = username
             };
-            IEnumerable<GetVideosListQueryResponse> videos = await _mediator.Send(query);
+            IEnumerable<GetEmployeeTypeListQueryResponse> videos = await _mediator.Send(query);
             return Ok(videos);
         }
     }
