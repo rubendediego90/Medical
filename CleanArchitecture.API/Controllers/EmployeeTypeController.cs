@@ -1,7 +1,8 @@
 ﻿using CleanArchitecture.Application.Features.EmployeeTypes.Commands.CreateEmployeeType;
 using CleanArchitecture.Application.Features.EmployeeTypes.Commands.DeleteEmployeeType;
 using CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEmployeeType;
-using CleanArchitecture.Application.Features.Videos.Queries.GetVideosList;
+using CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmployeeTypesList;
+using CleanArchitecture.Application.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -18,16 +19,17 @@ namespace CleanArchitecture.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("{dEmployeeType}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<GetEmployeeTypeListQueryResponse>>> GetVideosByUsername(string username)
+
+        public async Task<ActionResult<PaginationVm<GetEmployeeTypeListQueryResponse>>> GetEmployeeTypesByUsername(string dEmployeeType)
         {
             GetEmployeeTypeListQueryRequest query = new()
             {
-                username = username
+                DEmployeeType = dEmployeeType
             };
-            IEnumerable<GetEmployeeTypeListQueryResponse> videos = await _mediator.Send(query);
-            return Ok(videos);
+            PaginationVm<GetEmployeeTypeListQueryResponse> result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpPost(Name = "CreateEmployeeType")]

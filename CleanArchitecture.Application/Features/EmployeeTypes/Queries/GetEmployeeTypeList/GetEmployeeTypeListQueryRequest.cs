@@ -1,10 +1,13 @@
-﻿using MediatR;
+﻿using CleanArchitecture.Application.Pagination;
+using MediatR;
 
-namespace CleanArchitecture.Application.Features.Videos.Queries.GetVideosList
+namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmployeeTypesList
 {
-    public class GetEmployeeTypeListQueryRequest : IRequest<List<GetEmployeeTypeListQueryResponse>>
+    public class GetEmployeeTypeListQueryRequest : PaginationBaseQuery, IRequest<PaginationVm<GetEmployeeTypeListQueryResponse>>
     {
-        public string username { get; set; } = null!;
+        public string? DEmployeeType { get; set; }
 
     }
 }
+
+

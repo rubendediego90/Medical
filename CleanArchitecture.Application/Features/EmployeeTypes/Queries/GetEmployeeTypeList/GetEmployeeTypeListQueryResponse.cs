@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Application.Features.Videos.Queries.GetVideosList
+﻿namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmployeeTypesList
 {
-    public  class GetEmployeeTypeListQueryResponse
+    public class GetEmployeeTypeListQueryResponse
     {
         public int Id { get; set; }
         public string? DEmployeeType { get; set; }

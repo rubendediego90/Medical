@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Exceptions;
-using CleanArchitecture.Domain.IRepositories;
 using CleanArchitecture.Domain.Model;
+using CleanArchitecture.Infrastructure.IRepositories;
 using CleanArchitecture.Infrastructure.Persistence;
 using MediatR;
 

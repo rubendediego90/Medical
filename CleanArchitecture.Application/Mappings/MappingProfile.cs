@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Features.EmployeeTypes.Commands.CreateEmployeeType;
 using CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEmployeeType;
-using CleanArchitecture.Application.Features.Videos.Queries.GetVideosList;
+using CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmployeeTypesList;
 using CleanArchitecture.Domain.Model;
 
 namespace CleanArchitecture.Application.Mappings

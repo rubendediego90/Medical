@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CleanArchitecture.Infrastructure.Specifications;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace CleanArchitecture.Domain.IRepositories
+namespace CleanArchitecture.Infrastructure.IRepositories
 {
     public interface IBaseRepository<TEntity, TContext> where TEntity : class where TContext : DbContext
     {
@@ -26,6 +27,12 @@ namespace CleanArchitecture.Domain.IRepositories
         // Task<PagedResult<T>> GetPaginatedGenericList(DtoListFiltersBase dtoListFiltersBase, IQueryable<T> func);
 
         Task<TEntity?> GetById(int id);
+
+        Task<TEntity> GetByIdWithSpec(ISpecification<TEntity> spec);
+
+        Task<IReadOnlyList<TEntity>> GetAllWithSpec(ISpecification<TEntity> spec);
+
+        Task<int> CountAsync(ISpecification<TEntity> spec);
 
     }
 }
