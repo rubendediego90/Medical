@@ -2,7 +2,6 @@
 {
     public class PaginationBaseQuery
     {
-        public string? Search { get; set; }
         public string? Sort { get; set; }
         public int PageIndex { get; set; } = 1;
 

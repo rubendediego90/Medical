@@ -8,7 +8,7 @@ namespace Application.Specifications.EmployeeTypes
     {
         public EmployeeTypeForCountingSpecification(EmployeeTypeSpecificationParams employeeTypeParams)
             : base(x =>
-                    (string.IsNullOrEmpty(employeeTypeParams.Search) || x.DEmployeeType!.Contains(employeeTypeParams.Search))
+                    (string.IsNullOrEmpty(employeeTypeParams.DEmployeeType) || x.DEmployeeType!.Contains(employeeTypeParams.DEmployeeType))
              )
         {
         }

@@ -27,14 +27,14 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmploy
             {
                 PageIndex = request.PageIndex,
                 PageSize = request.PageSize,
-                Search = request.Search,
                 Sort = request.Sort,
             };
             var spec = new EmployeeTypeSpecification(employeeTypeSpecificationParams);
 
             var sddsds5 = _employeeTypeRepository.GetAsNoTracking()
                                                  .ApplyQueryFilters(GetQueryFilters(request))
-                                                 .OrderBy("id",true);
+                                                 .OrderBy("id",true)
+                                                 .ToList();//TODO: revisar en asif
 
             var videos = await _employeeTypeRepository.GetAllWithSpec(spec);
 
@@ -69,16 +69,5 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmploy
 
             return queryFilters;
         }
-
-        public IQueryable<T> ApplyQueryFilters2<T>(IQueryable<T> query, List<Expression<Func<T, bool>>> filters)
-        {
-            foreach (Expression<Func<T, bool>> filter in filters)
-            {
-                query = query.Where(filter);
-            }
-
-            return query;
-        }
     }
-
 }

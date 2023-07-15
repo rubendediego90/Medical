@@ -19,16 +19,11 @@ namespace CleanArchitecture.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{dEmployeeType}")]
+        [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
-        public async Task<ActionResult<PaginationVm<GetEmployeeTypeListQueryResponse>>> GetEmployeeTypesByUsername(string dEmployeeType)
+        public async Task<ActionResult<PaginationVm<GetEmployeeTypeListQueryResponse>>> GetEmployeeTypesSearch([FromQuery] GetEmployeeTypeListQueryRequest request)
         {
-            GetEmployeeTypeListQueryRequest query = new()
-            {
-                DEmployeeType = dEmployeeType
-            };
-            PaginationVm<GetEmployeeTypeListQueryResponse> result = await _mediator.Send(query);
+            PaginationVm<GetEmployeeTypeListQueryResponse> result = await _mediator.Send(request);
             return Ok(result);
         }
 
