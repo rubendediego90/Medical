@@ -1,6 +1,8 @@
-﻿namespace CleanArchitecture.Application.Specifications.EmployeeTypes
+﻿using CleanArchitecture.Application.Pagination;
+
+namespace CleanArchitecture.Application.Specifications.EmployeeTypes
 {
-    public class EmployeeTypeSpecificationParams : SpecificationParams
+    public class EmployeeTypeSpecificationParams : PaginationBaseQuery
     {
         public string? DEmployeeType { get; set; }
     }

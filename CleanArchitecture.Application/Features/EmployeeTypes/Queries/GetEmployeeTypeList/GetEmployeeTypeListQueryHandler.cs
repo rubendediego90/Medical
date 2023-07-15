@@ -1,6 +1,5 @@
 ﻿using Application.Specifications.EmployeeTypes;
 using AutoMapper;
-using CleanArchitecture.Application.Extensions;
 using CleanArchitecture.Application.Pagination;
 using CleanArchitecture.Application.Specifications.EmployeeTypes;
 using CleanArchitecture.Domain.Model;
@@ -23,19 +22,15 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmploy
         }
         public async Task<PaginationVm<GetEmployeeTypeListQueryResponse>> Handle(GetEmployeeTypeListQueryRequest request, CancellationToken cancellationToken)
         {
-            var employeeTypeSpecificationParams = new EmployeeTypeSpecificationParams
-            {
-                PageIndex = request.PageIndex,
-                PageSize = request.PageSize,
-                Sort = request.Sort,
-            };
+            EmployeeTypeSpecificationParams employeeTypeSpecificationParams = _mapper.Map<EmployeeTypeSpecificationParams>(request);
+      
             var spec = new EmployeeTypeSpecification(employeeTypeSpecificationParams);
 
-            var sddsds5 = _employeeTypeRepository.GetAsNoTracking()
+            /*var sddsds5 = _employeeTypeRepository.GetAsNoTracking()
                                                  .ApplyQueryFilters(GetQueryFilters(request))
                                                  .OrderBy("id",true)
                                                  .ToList();//TODO: revisar en asif
-
+            */
             var videos = await _employeeTypeRepository.GetAllWithSpec(spec);
 
             var specCount = new EmployeeTypeForCountingSpecification(employeeTypeSpecificationParams);
@@ -49,10 +44,10 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmploy
             var pagination = new PaginationVm<GetEmployeeTypeListQueryResponse>
             {
                 Count = totalVideos,
-                Data = data,
                 PageCount = totalPages,
                 PageIndex = request.PageIndex,
-                PageSize = request.PageSize
+                PageSize = request.PageSize,
+                Data = data
             };
 
             return pagination;
