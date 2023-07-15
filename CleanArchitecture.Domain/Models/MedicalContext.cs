@@ -65,7 +65,7 @@ namespace CleanArchitecture.Domain.ModelTEST
             {
                 entity.ToTable("Availability");
 
-                entity.Property(e => e.AvailabilityId).HasColumnName("AvailabilityID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Date).HasColumnType("date");
 

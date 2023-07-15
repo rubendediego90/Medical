@@ -16,6 +16,10 @@ namespace CleanArchitecture.Infrastructure.Persistence.EmployeeContext.Configura
 
             builder.Property(e => e.PersonId).HasColumnName("PersonID");
 
+            builder.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+            builder.Property(e => e.LastModifiedDate).HasColumnType("datetime");
+
             builder.HasOne(d => d.EmployeeType)
                 .WithMany(p => p.Employees)
                 .HasForeignKey(d => d.EmployeeTypeId)
