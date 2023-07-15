@@ -1,8 +1,10 @@
-﻿namespace CleanArchitecture.Domain.Model
+﻿using CleanArchitecture.Domain.Common;
+
+namespace CleanArchitecture.Domain.Model
 {
-    public partial class ScheduleWork
+    //horario del trabajador
+    public partial class ScheduleWork : BaseDomainModel
     {
-        public int Id { get; set; }
         public int? EmployeeId { get; set; }
         public string? DayWeek { get; set; }
         public TimeSpan? StartTime { get; set; }

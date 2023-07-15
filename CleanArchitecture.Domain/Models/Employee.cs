@@ -1,8 +1,9 @@
-﻿namespace CleanArchitecture.Domain.Model
+﻿using CleanArchitecture.Domain.Common;
+
+namespace CleanArchitecture.Domain.Model
 {
-    public partial class Employee
+    public partial class Employee : BaseDomainModel
     {
-        public int Id { get; set; }
         public int? PersonId { get; set; }
         public int? EmployeeTypeId { get; set; }
         public virtual EmployeeType? EmployeeType { get; set; }

@@ -1,8 +1,10 @@
-﻿namespace CleanArchitecture.Domain.Model
+﻿using CleanArchitecture.Domain.Common;
+
+namespace CleanArchitecture.Domain.Model
 {
-    public partial class PersonRole
+    //roles disponibles para un usaurio
+    public partial class PersonRole : BaseDomainModel
     {
-        public int Id { get; set; }
         public int? PersonId { get; set; }
         public int? RoleId { get; set; }
         public virtual Person? Person { get; set; }

@@ -1,8 +1,10 @@
-﻿namespace CleanArchitecture.Domain.Model
+﻿using CleanArchitecture.Domain.Common;
+
+namespace CleanArchitecture.Domain.Model
 {
-    public partial class Person
+    //id persona puede ser empleado o paciente
+    public partial class Person : BaseDomainModel
     {
-        public int Id { get; set; }
         public string? Password { get; set; }
         public string? Dni { get; set; }
         public string? Name { get; set; }

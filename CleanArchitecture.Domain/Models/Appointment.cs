@@ -1,8 +1,10 @@
-﻿namespace CleanArchitecture.Domain.Model
+﻿using CleanArchitecture.Domain.Common;
+
+namespace CleanArchitecture.Domain.Model
 {
-    public partial class Appointment
+    //Cita de medico con paciente
+    public partial class Appointment : BaseDomainModel
     {
-        public int Id { get; set; }
         public int? PersonId { get; set; }
         public int? EmployeeId { get; set; }
         public DateTime? Date { get; set; }

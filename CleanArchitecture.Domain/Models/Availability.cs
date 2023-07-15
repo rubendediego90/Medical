@@ -1,8 +1,10 @@
-﻿namespace CleanArchitecture.Domain.Model
+﻿using CleanArchitecture.Domain.Common;
+
+namespace CleanArchitecture.Domain.Model
 {
-    public partial class Availability
+    //Disponibilidad ditas disponibles del medico
+    public partial class Availability : BaseDomainModel
     {
-        public int AvailabilityId { get; set; }
         public int? EmployeeId { get; set; }
         public DateTime? Date { get; set; }
         public TimeSpan? StartTime { get; set; }
