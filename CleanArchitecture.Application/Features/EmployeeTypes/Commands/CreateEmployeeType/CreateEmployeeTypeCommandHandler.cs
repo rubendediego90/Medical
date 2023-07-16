@@ -6,7 +6,7 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Features.EmployeeTypes.Commands.CreateEmployeeType
 {
-    public class CreateEmployeeTypeCommandHandler : IRequestHandler<CreateEmployeeTypeCommandRequest, int>
+    public class CreateEmployeeTypeCommandHandler : IRequestHandler<CreateEmployeeTypeCommandRequest, int?>
     {
         private readonly IBaseRepository<EmployeeType, EmployeeDbContext> _employeeTypeRepository;
         private readonly IMapper _mapper;
@@ -17,13 +17,20 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Commands.CreateEm
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateEmployeeTypeCommandRequest request, CancellationToken cancellationToken)
+        public async Task<int?> Handle(CreateEmployeeTypeCommandRequest request, CancellationToken cancellationToken)
         {
             EmployeeType employeeTypeEntity = _mapper.Map<EmployeeType>(request);
-            EmployeeType newEmployeeType = await _employeeTypeRepository.Add(employeeTypeEntity);
 
-            return newEmployeeType.Id;
+            EmployeeType? newEmployeeType = await _employeeTypeRepository.Add(employeeTypeEntity);
+
+            if (newEmployeeType !=null)
+            {
+                return newEmployeeType!.Id;
+            }
+            else
+            {
+                return null;
+            }
         }
-
     }
 }

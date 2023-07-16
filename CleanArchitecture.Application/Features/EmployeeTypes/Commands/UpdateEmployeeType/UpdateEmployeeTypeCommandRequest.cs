@@ -6,8 +6,7 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Commands.UpdateEm
     public  class UpdateEmployeeTypeCommandRequest : IRequest 
     {
         public int Id { get; set; }
-
-        public string DEmployeeType { get; set; }
+        public string DEmployeeType { get; set; } = null!;
 
     }
 }

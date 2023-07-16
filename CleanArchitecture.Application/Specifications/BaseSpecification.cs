@@ -5,7 +5,6 @@ namespace CleanArchitecture.Application.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T>
     {
-        public BaseSpecification() { }
         public BaseSpecification(Expression<Func<T, bool>> criteria)
         {
             Criteria = criteria;
@@ -14,9 +13,9 @@ namespace CleanArchitecture.Application.Specifications
 
         public List<Expression<Func<T, object>>> Includes { get; } = new List<Expression<Func<T, object>>>();
 
-        public Expression<Func<T, object>> OrderBy { get; private set; }
+        public Expression<Func<T, object>>? OrderBy { get; private set; }
 
-        public Expression<Func<T, object>> OrderByDescending { get; private set; }
+        public Expression<Func<T, object>>? OrderByDescending { get; private set; }
 
         protected void AddOrderBy(Expression<Func<T, object>> orderByExpression)
         {

@@ -75,7 +75,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> GetByIdWithSpec(ISpecification<T> spec)
+        public async Task<T?> GetByIdWithSpec(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }

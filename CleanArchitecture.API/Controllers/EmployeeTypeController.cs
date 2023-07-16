@@ -29,9 +29,9 @@ namespace CleanArchitecture.API.Controllers
 
         [HttpPost(Name = "CreateEmployeeType")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<int>> CreateEmployeeType([FromBody] CreateEmployeeTypeCommandRequest request)
+        public async Task<ActionResult<int?>> CreateEmployeeType([FromBody] CreateEmployeeTypeCommandRequest request)
         {
-          return  await  _mediator.Send(request);
+          return await  _mediator.Send(request);
         }
 
         [HttpPut(Name = "UpdateEmployeeTyper")]

@@ -29,7 +29,7 @@ namespace CleanArchitecture.Infrastructure.IRepositories
 
         Task<TEntity?> GetById(int id);
 
-        Task<TEntity> GetByIdWithSpec(ISpecification<TEntity> spec);
+        Task<TEntity?> GetByIdWithSpec(ISpecification<TEntity> spec);
 
         Task<IReadOnlyList<TEntity>> GetAllWithSpec(ISpecification<TEntity> spec);
 
