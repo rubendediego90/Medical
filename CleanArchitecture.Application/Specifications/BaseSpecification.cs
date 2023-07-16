@@ -33,10 +33,11 @@ namespace CleanArchitecture.Application.Specifications
 
         public int Skip { get; private set; }
 
-        protected void ApplyPaging(int skip, int take)
+        protected void ApplyPaging(int pageIndex, int pageSize)
         {
+            int skip = pageSize * (pageIndex - 1);
             Skip = skip;
-            Take = take;
+            Take = pageSize;
             IsPagingEnable = true;
         }
 

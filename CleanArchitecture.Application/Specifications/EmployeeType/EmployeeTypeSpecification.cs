@@ -12,7 +12,7 @@ namespace Application.Specifications.EmployeeTypes
                     (string.IsNullOrEmpty(employeeTypeParams.DEmployeeType) || x.DEmployeeType!.Contains(employeeTypeParams.DEmployeeType))
                  )
         {
-            ApplyPaging(employeeTypeParams.PageSize * (employeeTypeParams.PageIndex - 1), employeeTypeParams.PageSize);
+            ApplyPaging(employeeTypeParams.PageIndex, employeeTypeParams.PageSize);
 
             if (!string.IsNullOrEmpty(employeeTypeParams.Sort))
             {
