@@ -14,6 +14,7 @@ namespace Application.Specifications.EmployeeTypes
         {
             ApplyPaging(employeeTypeParams.PageIndex, employeeTypeParams.PageSize);
 
+            //Se puede refactorizar para usar el orderBy como en el extensión, lo dejo asi por tener dos caminos diferentes
             if (!string.IsNullOrEmpty(employeeTypeParams.Sort))
             {
                 switch (employeeTypeParams.Sort)

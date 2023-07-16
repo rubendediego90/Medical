@@ -21,9 +21,9 @@ namespace CleanArchitecture.API.Controllers
 
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<PaginationVm<GetEmployeeTypeListQueryResponse>>> GetEmployeeTypesSearch([FromQuery] GetEmployeeTypeListQueryRequest request)
+        public async Task<ActionResult<Pagination<GetEmployeeTypeListQueryResponse>>> GetEmployeeTypesSearch([FromQuery] GetEmployeeTypeListQueryRequest request)
         {
-            PaginationVm<GetEmployeeTypeListQueryResponse> result = await _mediator.Send(request);
+            Pagination<GetEmployeeTypeListQueryResponse> result = await _mediator.Send(request);
             return Ok(result);
         }
 

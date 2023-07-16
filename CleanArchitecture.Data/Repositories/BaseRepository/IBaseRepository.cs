@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Infrastructure.Specifications;
+﻿using CleanArchitecture.Infrastructure.Pagination;
+using CleanArchitecture.Infrastructure.Specifications;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -32,7 +33,7 @@ namespace CleanArchitecture.Infrastructure.IRepositories
 
         Task<IReadOnlyList<TEntity>> GetAllWithSpec(ISpecification<TEntity> spec);
 
-        Task<int> CountAsync(ISpecification<TEntity> spec);
+        Task<PaginationData> GetPaginationWithSpec(ISpecification<TEntity> spec, int pageIndex, int pageSize);
 
     }
 }

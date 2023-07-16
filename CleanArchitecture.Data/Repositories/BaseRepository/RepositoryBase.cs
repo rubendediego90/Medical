@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Infrastructure.IRepositories;
+using CleanArchitecture.Infrastructure.Pagination;
 using CleanArchitecture.Infrastructure.Specification;
 using CleanArchitecture.Infrastructure.Specifications;
 using Microsoft.EntityFrameworkCore;
@@ -84,32 +85,24 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return await ApplySpecification(spec).ToListAsync();
         }
 
-        public async Task<int> CountAsync(ISpecification<T> spec)
+        public async Task<PaginationData> GetPaginationWithSpec(ISpecification<T> spec, int pageIndex, int pageSize)
         {
-            return await ApplySpecification(spec).CountAsync();
+            int total = await ApplySpecification(spec).CountAsync();
+            decimal rounded = Math.Ceiling(Convert.ToDecimal(total) / Convert.ToDecimal(pageSize));
+            int totalPages = Convert.ToInt32(rounded);
+            return new PaginationData()
+            {
+                Count = await ApplySpecification(spec).CountAsync(),
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                PageCount = totalPages
+            };
         }
 
         public IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
         }
-
-
-        /*public async Task<PagedResult<T>> GetPaginatedGenericList(DtoListFiltersBase dtoListFiltersBase, IQueryable<T> func)
-        {
-            int num = await func.CountAsync();
-            if (!dtoListFiltersBase.CurrentPage.HasValue)
-            {
-                dtoListFiltersBase.CurrentPage = 1;
-            }
-
-            if (!dtoListFiltersBase.PageSize.HasValue)
-            {
-                dtoListFiltersBase.PageSize = ((num <= 0) ? 1 : num);
-            }
-
-            return func.PageResult(dtoListFiltersBase.CurrentPage.Value, dtoListFiltersBase.PageSize.Value, num);
-        }*/
 
     }
 }
