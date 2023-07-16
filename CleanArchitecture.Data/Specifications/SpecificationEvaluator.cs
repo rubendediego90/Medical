@@ -20,7 +20,7 @@ namespace CleanArchitecture.Infrastructure.Specification
 
             if (spec.OrderByDescending != null)
             {
-                inputQuery = inputQuery.OrderBy(spec.OrderByDescending);
+                inputQuery = inputQuery.OrderByDescending(spec.OrderByDescending);
             }
 
             if (spec.IsPagingEnable)
