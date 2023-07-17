@@ -1,5 +1,7 @@
 ﻿using Application.Specifications.EmployeeTypes;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using CleanArchitecture.Application.Extensions;
 using CleanArchitecture.Application.Pagination;
 using CleanArchitecture.Application.Specifications.EmployeeTypes;
 using CleanArchitecture.Domain.Model;
@@ -27,11 +29,12 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmploy
 
             /*var sddsds5 = _employeeTypeRepository.GetAsNoTracking()
                                                  .ApplyQueryFilters(GetQueryFilters(request))
+                                                 .ProjectTo<GetEmployeeTypeListQueryResponse>(_mapper.ConfigurationProvider)
                                                  .OrderBy("id",true)
                                                  .ToList();//TODO: revisar en asif
+            
             */
-
-            IReadOnlyList<GetEmployeeTypeListQueryResponse> items = await GetItems(employeeTypeSpecificationParams);
+            IReadOnlyList<GetEmployeeTypeListQueryResponse> items = GetItems(employeeTypeSpecificationParams);
             PaginationData pagination = await GetPagination(employeeTypeSpecificationParams, request);
 
             Pagination<GetEmployeeTypeListQueryResponse> paginationItems = new()
@@ -49,11 +52,12 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmploy
             return await _employeeTypeRepository.GetPaginationWithSpec(specCount, request.PageIndex, request.PageSize);
         }
 
-        private async Task<IReadOnlyList<GetEmployeeTypeListQueryResponse>> GetItems(EmployeeTypeSpecificationParams employeeTypeSpecificationParams)
+        private IReadOnlyList<GetEmployeeTypeListQueryResponse> GetItems(EmployeeTypeSpecificationParams employeeTypeSpecificationParams)
         {
             EmployeeTypeSpecification spec = new(employeeTypeSpecificationParams);
-            IReadOnlyList<EmployeeType> employeeTypes = await _employeeTypeRepository.GetAllWithSpec(spec);
-            return _mapper.Map<IReadOnlyList<EmployeeType>, IReadOnlyList<GetEmployeeTypeListQueryResponse>>(employeeTypes);
+            return _employeeTypeRepository.GetAllWithSpec(spec)
+                                          .ProjectTo<GetEmployeeTypeListQueryResponse>(_mapper.ConfigurationProvider)
+                                          .ToList();
         }
 
         private static List<Expression<Func<EmployeeType, bool>>> GetQueryFilters(GetEmployeeTypeListQueryRequest filters)

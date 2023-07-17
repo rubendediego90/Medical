@@ -31,7 +31,8 @@ namespace CleanArchitecture.Infrastructure.IRepositories
 
         Task<TEntity?> GetByIdWithSpec(ISpecification<TEntity> spec);
 
-        Task<IReadOnlyList<TEntity>> GetAllWithSpec(ISpecification<TEntity> spec);
+        Task<IReadOnlyList<TEntity>> GetAllWithSpecAsync(ISpecification<TEntity> spec);
+        IQueryable<TEntity> GetAllWithSpec(ISpecification<TEntity> spec);
 
         Task<PaginationData> GetPaginationWithSpec(ISpecification<TEntity> spec, int pageIndex, int pageSize);
 
