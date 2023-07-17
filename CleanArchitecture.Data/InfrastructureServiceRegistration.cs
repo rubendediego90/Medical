@@ -16,6 +16,10 @@ namespace CleanArchitecture.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
             );
 
+            services.AddDbContext<AutenticationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+            );
+
             services.AddScoped(typeof(IBaseRepository<,>), typeof(RepositoryBase<,>));
             // services.AddScoped<IVideoRepository, VideoRepository>();
 

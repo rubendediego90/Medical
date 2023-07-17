@@ -27,7 +27,6 @@ namespace CleanArchitecture.Application.Specifications
             OrderByDescending = orderByDescExpression;
         }
 
-
         public int Take { get; private set; }
 
         public int Skip { get; private set; }
