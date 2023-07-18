@@ -2,23 +2,15 @@
 
 namespace CleanArchitecture.Application.Exceptions
 {
-    public class ValidationException : ApplicationException
+    public class ValidationException : Exception
     {
-        public ValidationException() : base("Se presentaron uno o mas errores de validacion")
+        public ValidationException(string message) : base(message) { }
+
+        public ValidationException(IEnumerable<string> errors) : base("Se produjeron uno o más errores de validación.")
         {
-            Errors = new Dictionary<string, string[]>();
+            Errors = errors.ToList();
         }
 
-        public ValidationException(IEnumerable<ValidationFailure>  failures) : this()
-        {
-            Errors = failures
-                .GroupBy(e => e.PropertyName, e => e.ErrorMessage)
-                .ToDictionary(failureGroup => failureGroup.Key, failureGroup => failureGroup.ToArray());
-
-        }
-
-
-        public IDictionary<string, string[]> Errors { get; }
-
+        public List<string>? Errors { get; }
     }
 }
