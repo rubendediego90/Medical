@@ -1,9 +1,7 @@
-﻿using CleanArchitecture.Domain.Common;
-
-namespace CleanArchitecture.Domain.Model
+﻿using MediatR;
+namespace CleanArchitecture.Application.Features.Persons.Commands.CreatePerson
 {
-    //id persona puede ser empleado o paciente
-    public partial class Person : BaseDomainModel
+    public class CreatePersonCommandRequest : IRequest<int?>
     {
         public string Password { get; set; } = null!;
         public string Dni { get; set; } = null!;
@@ -15,8 +13,5 @@ namespace CleanArchitecture.Domain.Model
         public string? Address { get; set; }
         public string Email { get; set; } = null!;
 
-        public virtual ICollection<Appointment>? Appointments { get; set; }
-        public virtual ICollection<Employee>? Employees { get; set; }
-        public virtual ICollection<PersonRole>? PersonRoles { get; set; }
     }
 }

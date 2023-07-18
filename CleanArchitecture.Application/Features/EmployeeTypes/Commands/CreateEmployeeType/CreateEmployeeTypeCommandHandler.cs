@@ -23,14 +23,8 @@ namespace CleanArchitecture.Application.Features.EmployeeTypes.Commands.CreateEm
 
             EmployeeType? newEmployeeType = await _employeeTypeRepository.Add(employeeTypeEntity);
 
-            if (newEmployeeType !=null)
-            {
-                return newEmployeeType!.Id;
-            }
-            else
-            {
-                return null;
-            }
+            return newEmployeeType != null ? newEmployeeType!.Id : null;
+
         }
     }
 }
