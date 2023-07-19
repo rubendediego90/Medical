@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Application.Pagination;
+﻿using CleanArchitecture.Infrastructure.Pagination;
 
-namespace CleanArchitecture.Application.Specifications.EmployeeTypes
+namespace CleanArchitecture.Infrastructure.Specifications.EmployeeTypes
 {
     public class EmployeeTypeSpecificationParams : PaginationBaseQuery
     {

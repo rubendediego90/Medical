@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Pagination;
+﻿using CleanArchitecture.Infrastructure.Pagination;
 using MediatR;
 
 namespace CleanArchitecture.Application.Features.EmployeeTypes.Queries.GetEmployeeTypesList

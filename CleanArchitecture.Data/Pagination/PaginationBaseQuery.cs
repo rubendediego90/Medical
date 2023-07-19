@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Application.Pagination
+﻿namespace CleanArchitecture.Infrastructure.Pagination
 {
     public class PaginationBaseQuery
     {

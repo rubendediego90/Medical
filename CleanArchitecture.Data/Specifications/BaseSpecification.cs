@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Domain.Specifications;
 using System.Linq.Expressions;
 
-namespace CleanArchitecture.Application.Specifications
+namespace CleanArchitecture.Infrastructure.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T>
     {

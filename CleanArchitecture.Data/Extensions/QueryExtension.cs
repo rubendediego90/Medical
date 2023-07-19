@@ -1,7 +1,7 @@
 ﻿using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
-namespace CleanArchitecture.Application.Extensions
+namespace CleanArchitecture.Infrastructure.Extensions
 {
     public static class QueryExtension
     {

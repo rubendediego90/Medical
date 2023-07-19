@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Domain.Dtos;
 
-namespace CleanArchitecture.Application.Pagination
+namespace CleanArchitecture.Infrastructure.Pagination
 {
     public class Pagination<T> where T : class
     {

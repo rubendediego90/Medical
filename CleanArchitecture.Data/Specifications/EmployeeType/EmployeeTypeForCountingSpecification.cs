@@ -1,7 +1,5 @@
-﻿using CleanArchitecture.Application.Specifications;
-using CleanArchitecture.Application.Specifications.EmployeeTypes;
-using CleanArchitecture.Domain.Model;
-namespace Application.Specifications.EmployeeTypes
+﻿using CleanArchitecture.Domain.Model;
+namespace CleanArchitecture.Infrastructure.Specifications.EmployeeTypes
 
 {
     public class EmployeeTypeForCountingSpecification : BaseSpecification<EmployeeType>

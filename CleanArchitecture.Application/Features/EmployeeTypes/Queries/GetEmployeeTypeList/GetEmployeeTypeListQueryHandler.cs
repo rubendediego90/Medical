@@ -1,12 +1,11 @@
-﻿using Application.Specifications.EmployeeTypes;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using CleanArchitecture.Application.Pagination;
-using CleanArchitecture.Application.Specifications.EmployeeTypes;
 using CleanArchitecture.Domain.BaseRepository;
 using CleanArchitecture.Domain.Dtos;
 using CleanArchitecture.Domain.Model;
+using CleanArchitecture.Infrastructure.Pagination;
 using CleanArchitecture.Infrastructure.Persistence;
+using CleanArchitecture.Infrastructure.Specifications.EmployeeTypes;
 using MediatR;
 using System.Linq.Expressions;
 

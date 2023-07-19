@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-
-namespace CleanArchitecture.Application.Exceptions
+﻿namespace CleanArchitecture.Application.Exceptions
 {
     public class ValidationException : Exception
     {
