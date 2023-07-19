@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Infrastructure.Pagination;
+﻿using CleanArchitecture.Domain.Dtos;
 
 namespace CleanArchitecture.Application.Pagination
 {

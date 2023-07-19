@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Infrastructure.Specifications;
+﻿using CleanArchitecture.Domain.Specifications;
 using System.Linq.Expressions;
 
 namespace CleanArchitecture.Application.Specifications

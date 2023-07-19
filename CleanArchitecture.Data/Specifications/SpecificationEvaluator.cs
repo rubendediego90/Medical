@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Infrastructure.Specifications;
+using CleanArchitecture.Domain.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Infrastructure.Specification

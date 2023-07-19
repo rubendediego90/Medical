@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-namespace CleanArchitecture.Infrastructure.Specifications
+namespace CleanArchitecture.Domain.Specifications
 {
     public interface ISpecification<T>
     {

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Infrastructure.Pagination
+﻿namespace CleanArchitecture.Domain.Dtos
 {
     public class PaginationData
     {

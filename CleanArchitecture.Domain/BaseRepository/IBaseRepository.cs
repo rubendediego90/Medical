@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Infrastructure.Pagination;
-using CleanArchitecture.Infrastructure.Specifications;
+﻿using CleanArchitecture.Domain.Dtos;
+using CleanArchitecture.Domain.Specifications;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace CleanArchitecture.Infrastructure.IRepositories
+namespace CleanArchitecture.Domain.BaseRepository
 {
     public interface IBaseRepository<TEntity, TContext> where TEntity : class where TContext : DbContext
     {
