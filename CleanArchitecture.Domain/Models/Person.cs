@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Domain.Enum;
 
 namespace CleanArchitecture.Domain.Model
 {
@@ -11,7 +12,7 @@ namespace CleanArchitecture.Domain.Model
         public string? LastName1 { get; set; }
         public string? LastName2 { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public string? Gender { get; set; }
+        public EnumGender? Gender { get; set; }
         public string? Address { get; set; }
         public string Email { get; set; } = null!;
 
