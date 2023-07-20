@@ -109,5 +109,10 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
         }
 
+        public async Task<bool> CheckExistence(Expression<Func<T,bool>> expresion)
+        {
+            return await _context.Set<T>().AnyAsync(expresion);
+        }
+
     }
 }

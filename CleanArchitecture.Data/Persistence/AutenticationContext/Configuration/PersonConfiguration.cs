@@ -38,7 +38,7 @@ namespace CleanArchitecture.Infrastructure.Persistence.AutenticationContext.Conf
 
             builder.Property(e => e.Name).HasMaxLength(25);
 
-            builder.Property(e => e.Password).HasMaxLength(10);
+            builder.Property(e => e.Password).HasMaxLength(30);
         }
     }
 }

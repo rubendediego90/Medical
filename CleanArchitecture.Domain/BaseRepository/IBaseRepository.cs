@@ -25,8 +25,6 @@ namespace CleanArchitecture.Domain.BaseRepository
 
         IQueryable<TEntity> GetAsNoTracking(Expression<Func<TEntity, bool>> expression);
 
-        // Task<PagedResult<T>> GetPaginatedGenericList(DtoListFiltersBase dtoListFiltersBase, IQueryable<T> func);
-
         Task<TEntity?> GetById(int id);
 
         Task<TEntity?> GetByIdWithSpec(ISpecification<TEntity> spec);
@@ -35,6 +33,8 @@ namespace CleanArchitecture.Domain.BaseRepository
         IQueryable<TEntity> GetAllWithSpec(ISpecification<TEntity> spec);
 
         Task<PaginationData> GetPaginationWithSpec(ISpecification<TEntity> spec, int pageIndex, int pageSize);
+
+        Task<bool> CheckExistence(Expression<Func<TEntity, bool>> expresion);
 
     }
 }

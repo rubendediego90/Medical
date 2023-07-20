@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using CleanArchitecture.Application.Behaviours;
+using CleanArchitecture.Infrastructure.Repositories;
+using CleanArchitecture.Application.IRepositories;
 
 namespace CleanArchitecture.Application
 {
@@ -15,6 +17,7 @@ namespace CleanArchitecture.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddScoped<IPersonRepository, PersonRepository>();
 
             return services;
         }
